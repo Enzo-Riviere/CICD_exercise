@@ -24,16 +24,16 @@ jobs:
         run : npm audit
         working-directory: frontend
         continue-on-error: true
-      
-      - name: Run Cypress tests with React server
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm start
-          wait-on: 'http://localhost:3000'
-          wait-on-timeout: 60
 
       - name: Set up docker
         uses: docker/setup-buildx-action@v3
       
       - name: Build Docker images
         run : docker-compose up --build
+
+      - name: Run Cypress tests with React server
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 60

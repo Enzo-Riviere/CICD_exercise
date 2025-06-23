@@ -18,6 +18,7 @@ jobs:
     
       - name: Run linting
         run : npm run lint
+        working-directory: frontend
       
       - name: Run Cypress tests with React server
         uses: cypress-io/github-action@v6

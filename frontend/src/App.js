@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+// frontend/src/App.js
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
+var lint_test = 42;
 
 function App() {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/hello')
+      .then(res => setMessage(res.data.message))
+      .catch(() => setMessage('Error connecting to backend'));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Frontend</h1>
+      <p>{message}</p>
     </div>
   );
 }
